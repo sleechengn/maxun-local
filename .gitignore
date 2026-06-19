@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+/browser/node_modules
+maxun
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+/.idea
+
+/server/logs
+
+/build
+
+package-lock.json

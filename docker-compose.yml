@@ -50,10 +50,11 @@ services:
       lan12:
         ipv4_address: 192.168.12.4
   backend:
-    build:
-      context: .
-      dockerfile: Dockerfile.backend
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile.backend
     #image: getmaxun/maxun-backend:latest
+    image: 192.168.13.73:5000/getmaxun/maxun-backend:latest
     container_name: maxun-backend
     hostname: maxun-backend
     restart: unless-stopped
@@ -77,7 +78,7 @@ services:
     security_opt:
     - seccomp=unconfined  # This might help with browser sandbox issues
     #shm_size: '2gb' # Increase shared memory size for Chromium
-    mem_limit: 6g   # Set 6GB memory limit
+    #mem_limit: 6g   # Set 6GB memory limit
     depends_on:
       - postgres
       - minio
@@ -87,12 +88,13 @@ services:
       lan12:
         ipv4_address: 192.168.12.5
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile.frontend
+    image: 192.168.13.73:5000/getmaxun/maxun-frontend:latest
+    #image: getmaxun/maxun-frontend:latest
     container_name: maxun-frontend
     hostname: maxun-frontend
-    #image: getmaxun/maxun-frontend:latest
     restart: unless-stopped
     #ports:
     #  - "${FRONTEND_PORT:-5173}:${FRONTEND_PORT:-5173}"
@@ -108,13 +110,13 @@ services:
   browser:
     hostname: maxun-browser
     container_name: maxun-browser
-    #image: 192.168.13.73:5000/maxun-browser:latest
-    build:
-      context: .
-      dockerfile: browser/Dockerfile
-      args:
-        BROWSER_WS_PORT: ${BROWSER_WS_PORT:-3001}
-        BROWSER_HEALTH_PORT: ${BROWSER_HEALTH_PORT:-3002}
+    image: 192.168.13.73:5000/sleechengn/maxun-browser:latest
+    #build:
+    #  context: .
+    #  dockerfile: browser/Dockerfile
+    #  args:
+    #    BROWSER_WS_PORT: ${BROWSER_WS_PORT:-3001}
+    #    BROWSER_HEALTH_PORT: ${BROWSER_HEALTH_PORT:-3002}
     #ports:
     #  - "${BROWSER_WS_PORT:-3001}:${BROWSER_WS_PORT:-3001}"
     #  - "${BROWSER_HEALTH_PORT:-3002}:${BROWSER_HEALTH_PORT:-3002}"

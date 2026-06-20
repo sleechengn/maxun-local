@@ -30,6 +30,13 @@ if [ ! -e "$(dirname $0)/maxun" ]; then
     #sed -i '/# Build TypeScript server.*/a\\ENV INLINE_RUNTIME_CHUNK=false' Dockerfile.backend
     sed -i '/# Build TypeScript server.*/a\\ENV NODE_OPTIONS="--max-old-space-size=4096"' Dockerfile.backend
 else
+    rm -rf $(dirname $0)/maxun/docker-compose.yml
+    rm -rf $(dirname $0)/maxun/.env
+    rm -rf $(dirname $0)/maxun/conf.d
+
+    cp -ra docker-compose.yml $(dirname $0)/maxun
+    cp -ra .env $(dirname $0)/maxun
+    cp -ra conf.d $(dirname $0)/maxun
     cd $(dirname $0)/maxun
 fi
 

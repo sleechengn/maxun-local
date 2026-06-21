@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-if [ ! -e "$(dirname $0)/maxun" ]; then
-    curl -f -s -H 'Cache-Control: no-cache' http://192.168.13.80:3000/sleechengn/maxun-local
-    exit_code=$?
-    echo "exit_code=$exit_code"
+curl -f -s -H 'Cache-Control: no-cache' http://192.168.13.80:3000/sleechengn/maxun-local
+exit_code=$?
+echo "exit_code=$exit_code"
 
+if [ ! -e "$(dirname $0)/maxun" ]; then
+    
     if [ ! $exit_code -eq 0 ]; then
         git clone https://github.com/getmaxun/maxun $(dirname $0)/maxun
     else

@@ -11,7 +11,7 @@ networks:
 services:
   postgres:
     #image: postgres:13
-    image: 192.168.13.73:5000/postgres:13
+    image: 192.168.13.73:5000/postgres-x86_64:13
     restart: unless-stopped
     container_name: maxun-postgres
     hostname: maxun-postgres
@@ -33,7 +33,7 @@ services:
         ipv4_address: 192.168.12.3
   minio:
     #image: minio/minio
-    image: 192.168.13.73:5000/minio/minio
+    image: 192.168.13.73:5000/minio/minio-x86_64
     restart: unless-stopped
     container_name: maxun-minio
     hostname: maxun-minio
@@ -54,7 +54,7 @@ services:
     #  context: .
     #  dockerfile: Dockerfile.backend
     #image: getmaxun/maxun-backend:latest
-    image: 192.168.13.73:5000/getmaxun/maxun-backend:latest
+    image: 192.168.13.73:5000/sleechengn/maxun-x86_64:backend
     container_name: maxun-backend
     hostname: maxun-backend
     restart: unless-stopped
@@ -86,12 +86,12 @@ services:
       - /var/run/dbus:/var/run/dbus
     networks:
       lan12:
-        ipv4_address: 192.168.12.5
+        ipv4_address: 192.168.12.15
   frontend:
     #build:
     #  context: .
     #  dockerfile: Dockerfile.frontend
-    image: 192.168.13.73:5000/getmaxun/maxun-frontend:latest
+    image: 192.168.13.73:5000/sleechengn/maxun-x86_64:frontend
     #image: getmaxun/maxun-frontend:latest
     container_name: maxun-frontend
     hostname: maxun-frontend
@@ -110,7 +110,7 @@ services:
   browser:
     hostname: maxun-browser
     container_name: maxun-browser
-    image: 192.168.13.73:5000/sleechengn/maxun-browser:latest
+    image: 192.168.13.73:5000/sleechengn/maxun-x86_64:browser
     #build:
     #  context: .
     #  dockerfile: browser/Dockerfile
@@ -156,7 +156,7 @@ services:
   nginx:
     hostname: maxun-nginx
     container_name: maxun-nginx
-    image: 192.168.13.73:5000/nginx:latest
+    image: 192.168.13.73:5000/nginx-x86_64:latest
     volumes:
       - ./conf.d:/etc/nginx/conf.d
     networks:

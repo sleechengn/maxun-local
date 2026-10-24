@@ -30,7 +30,7 @@ services:
       retries: 5
     networks:
       lan12:
-        ipv4_address: 192.168.12.3
+        ipv4_address: 192.168.12.13
   minio:
     #image: minio/minio
     image: 192.168.13.73:5000/minio/minio-x86_64
@@ -48,7 +48,7 @@ services:
       - minio_data:/data
     networks:
       lan12:
-        ipv4_address: 192.168.12.4
+        ipv4_address: 192.168.12.14
   backend:
     #build:
     #  context: .
@@ -150,7 +150,7 @@ services:
       - NET_ADMIN
     networks:
       lan12:
-        ipv4_address: 192.168.12.7
+        ipv4_address: 192.168.12.17
     dns:
       - 119.29.29.29
   nginx:
@@ -161,7 +161,7 @@ services:
       - ./conf.d:/etc/nginx/conf.d
     networks:
       lan12:
-        ipv4_address: 192.168.12.8
+        ipv4_address: 192.168.12.18
     dns:
       - 119.29.29.29
 volumes:
